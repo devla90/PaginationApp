@@ -30,10 +30,15 @@ fun PhotosListScreen() {
 
     Column(modifier = Modifier.fillMaxWidth()) {
         Text("Prueba")
-        val photosList = (uiState as UiState.Success).data
-        LazyColumn {
-            items(photosList) { photo ->
-                Text(photo.img_src)
+        when(uiState){
+            UiState.Idle -> {}
+            is UiState.Success -> {
+                val photosList = (uiState as UiState.Success).data
+                LazyColumn {
+                    items(photosList) { photo ->
+                        Text(photo.img_src)
+                    }
+                }
             }
         }
     }
